@@ -61,6 +61,12 @@ namespace CalculatorDemo.ViewModels
                     else
                         SecondNumber *= -1;
                     break;
+                case "%":
+                    if (_firstInput)
+                        FirstNumber *= 0.01;
+                    else
+                        SecondNumber *= 0.01;
+                    break;
                 case ".":
                     // Some logic/method/flag to let NumberPressed know that the next numbers will be decimals
                     break;
@@ -97,9 +103,6 @@ namespace CalculatorDemo.ViewModels
                     break;
                 case "÷":
                     Result = FirstNumber / SecondNumber;
-                    break;
-                case "%":
-                    Result = FirstNumber % SecondNumber;
                     break;
                 case "":
                     Result = FirstNumber;
