@@ -22,10 +22,29 @@ namespace CalculatorDemo.ViewModels
         {
             if (!int.TryParse(number, out int result))
                 throw new ArgumentException($"Could not parse number to int ({number})", nameof(number));
+
             if (_firstInput)
-                FirstNumber = result;
+            {
+                if (FirstNumber >= 0)
+                {
+                    FirstNumber = FirstNumber * 10 + result;
+                }
             else
-                SecondNumber = result;
+                {
+                    FirstNumber = FirstNumber * 10 - result;
+        }
+            }    
+            else
+            {
+                if (SecondNumber >= 0)
+                {
+                    SecondNumber = SecondNumber * 10 + result;
+                }
+                else
+                {
+                    SecondNumber = SecondNumber * 10 - result;
+                }
+            }
         }
 
         [RelayCommand]
