@@ -54,20 +54,22 @@ namespace CalculatorDemo.ViewModels
             {
                 case "=":
                     ProcessResult();
-                    return;
+                    break;
                 case "+/-":
                     if (_firstInput)
                         FirstNumber *= -1;
                     else
                         SecondNumber *= -1;
-                    return;
+                    break;
                 case ".":
                     // Some logic/method/flag to let NumberPressed know that the next numbers will be decimals
-                    return;
-            }
-
+                    break;
+                default:
             Operator = op;
             _firstInput = false;
+                    break; 
+
+            }
         }
 
         [RelayCommand]
