@@ -16,6 +16,7 @@ namespace CalculatorDemo.ViewModels
         private string _operator = "";
 
         private bool _firstInput = true;
+        private bool _isDecimal;
 
         [RelayCommand]
         private void NumberPressed(string number)
@@ -25,6 +26,12 @@ namespace CalculatorDemo.ViewModels
 
             if (_firstInput)
             {
+                if (_isDecimal)
+                {
+                    // some code
+                }
+                else
+                {
                 if (FirstNumber >= 0)
                 {
                     FirstNumber = FirstNumber * 10 + result;
@@ -34,8 +41,15 @@ namespace CalculatorDemo.ViewModels
                     FirstNumber = FirstNumber * 10 - result;
         }
             }    
+            }
             else
             {
+                if (_isDecimal)
+                {
+                    // some code
+                }
+                else
+                {
                 if (SecondNumber >= 0)
                 {
                     SecondNumber = SecondNumber * 10 + result;
@@ -45,6 +59,7 @@ namespace CalculatorDemo.ViewModels
                     SecondNumber = SecondNumber * 10 - result;
                 }
             }
+        }
         }
 
         [RelayCommand]
@@ -69,10 +84,12 @@ namespace CalculatorDemo.ViewModels
                     break;
                 case ".":
                     // Some logic/method/flag to let NumberPressed know that the next numbers will be decimals
+                    _isDecimal = true;
                     break;
                 default:
             Operator = op;
             _firstInput = false;
+                    _isDecimal = false;
                     break; 
 
             }
@@ -82,6 +99,7 @@ namespace CalculatorDemo.ViewModels
         private void Clear()
         {
             _firstInput = true;
+            _isDecimal = false;
             FirstNumber = 0;
             SecondNumber = 0;
             Result = 0;
